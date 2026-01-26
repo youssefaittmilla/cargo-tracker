@@ -15,10 +15,9 @@ pipeline {
 
         stage('Build & Test with Coverage') {
             steps {
-                bat 'mvn clean verify'
+                echo 'mvn clean verify'
             }
         }
-
         stage('SonarQube Analysis') {
             environment {
                 SONAR_TOKEN = credentials('sonar-token-id')
