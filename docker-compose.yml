@@ -8,6 +8,7 @@
 #
 #  docker-compose up
 #
+
 version: '3.8'
 
 services:
@@ -30,6 +31,24 @@ services:
       - postgres
     environment:
       DB_HOST: postgres
+      DB_USER: cargotracker
+      DB_PASSWORD: cargotracker
+      DB_NAME: postgres
+
+  sonarqube:
+    image: sonarqube:community-latest
+    container_name: sonarqube
+    ports:
+      - "9000:9000"
+    environment:
+      SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_logs:/opt/sonarqube/logs
+      - sonarqube_extensions:/opt/sonarqube/extensions
 
 volumes:
   postgres-data:
+  sonarqube_data:
+  sonarqube_logs:
+  sonarqube_extensions:
