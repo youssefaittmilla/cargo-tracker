@@ -1,14 +1,3 @@
-# To run the cloud version locally, first build the application using:
-#
-#  ./mvnw clean package -Pcloud
-#      -DpostgreSqlJdbcUrl="jdbc:postgresql://postgres:5432/postgres"
-#      -DpostgreSqlUsername="cargotracker" -DpostgreSqlPassword="cargotracker"
-#
-# Then start the services with:
-#
-#  docker-compose up
-#
-
 version: '3.8'
 
 services:
@@ -35,17 +24,17 @@ services:
       DB_PASSWORD: cargotracker
       DB_NAME: postgres
 
- sonarqube:
-  image: sonarqube:10-community
-  container_name: sonarqube
-  ports:
-    - "9000:9000"
-  environment:
-    SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
-  volumes:
-    - sonarqube_data:/opt/sonarqube/data
-    - sonarqube_logs:/opt/sonarqube/logs
-    - sonarqube_extensions:/opt/sonarqube/extensions
+  sonarqube:
+    image: sonarqube:10-community
+    container_name: sonarqube
+    ports:
+      - "9000:9000"
+    environment:
+      SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_logs:/opt/sonarqube/logs
+      - sonarqube_extensions:/opt/sonarqube/extensions
 
 volumes:
   postgres-data:
